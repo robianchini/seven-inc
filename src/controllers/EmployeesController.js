@@ -5,7 +5,7 @@ module.exports = {
 
   async index(req, res) {
     const employeesList = await knex('tb_employees');
-    res.json({ employessList });
+    res.json({ employeesList });
   },
 
   async show(req, res) {
@@ -33,7 +33,7 @@ module.exports = {
     const { id } = req.params;
     const { emp_name, emp_born_date, emp_salary, emp_position } = req.body;
 
-    const hasUser = await knex('tb_employees').where('emp_id', id);
+    const hasUser = await knex('tb_employees').where('emp_id', id).first();
 
     if (hasUser) {
       const updated = await knex('tb_employees')
@@ -48,7 +48,13 @@ module.exports = {
   },
 
   async delete(req, res) {
-    res.json({ message: 'Delete User!' });
+    const { id } = req.params;
+    const hasUser = await knex('tb_employees').where('emp_id', id).first();
+    if (hasUser) {
+      await knex('tb_employees').del().where('emp_id', id);
+      res.json({ success: 'Usuário excluído.' });
+    } else {
+      res.json({ error: 'Este ID de usuário não existe.' });
+    }
   }
-
 }
