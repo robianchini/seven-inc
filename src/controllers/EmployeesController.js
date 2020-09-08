@@ -10,12 +10,12 @@ module.exports = {
 
   async show(req, res) {
     const { id } = req.params;
-    const userDetail = await knex('tb_employees').where('emp_id', id).first();
+    const empDetail = await knex('tb_employees').where('emp_id', id).first();
 
-    if (!userDetail) {
-      res.json({ error: 'Usuário não encontrado.' });
+    if (!empDetail) {
+      res.json({ error: 'ID não encontrado.' });
     } else {
-      res.json(userDetail)
+      res.json(empDetail)
     }
   },
 
@@ -26,35 +26,35 @@ module.exports = {
       emp_name, emp_born_date, emp_salary, emp_position
     });
 
-    res.json({ success: 'Usuário cadastrado com sucesso!' });
+    res.json({ success: 'Cadastrado com sucesso!' });
   },
 
   async update(req, res) {
     const { id } = req.params;
     const { emp_name, emp_born_date, emp_salary, emp_position } = req.body;
 
-    const hasUser = await knex('tb_employees').where('emp_id', id).first();
+    const hasEmp = await knex('tb_employees').where('emp_id', id).first();
 
-    if (hasUser) {
+    if (hasEmp) {
       const updated = await knex('tb_employees')
         .update({ emp_name, emp_born_date, emp_salary, emp_position })
         .where({ emp_id: id });
       if (updated) {
-        res.json({ success: 'Usuário alterado com sucesso.' });
+        res.json({ success: 'Alterado com sucesso.' });
       }
     } else {
-      res.json({ error: 'Este ID de usuário não existe.' });
+      res.json({ error: 'Este ID não existe.' });
     }
   },
 
   async delete(req, res) {
     const { id } = req.params;
-    const hasUser = await knex('tb_employees').where('emp_id', id).first();
-    if (hasUser) {
+    const hasEmp = await knex('tb_employees').where('emp_id', id).first();
+    if (hasEmp) {
       await knex('tb_employees').del().where('emp_id', id);
-      res.json({ success: 'Usuário excluído.' });
+      res.json({ success: 'Excluído com sucesso.' });
     } else {
-      res.json({ error: 'Este ID de usuário não existe.' });
+      res.json({ error: 'Este ID não existe.' });
     }
   }
 }
