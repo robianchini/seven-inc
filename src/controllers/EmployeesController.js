@@ -4,7 +4,7 @@ const knex = require('../database/connection');
 module.exports = {
 
   async index(req, res) {
-    const employeesList = await knex('tb_employees');
+    const employeesList = await knex('tb_employees').orderBy('emp_name', 'asc');
     res.json({ employeesList });
   },
 
@@ -26,7 +26,8 @@ module.exports = {
       emp_name, emp_born_date, emp_salary, emp_position
     });
 
-    res.json({ success: 'Cadastrado com sucesso!' });
+    // res.json({ success: 'Cadastrado com sucesso!' });
+    return res.status(200).send({ success: 'Cadastrado com sucesso.' });
   },
 
   async update(req, res) {

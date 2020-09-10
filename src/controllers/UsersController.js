@@ -28,13 +28,16 @@ module.exports = {
     const hashedPassword = await bcrypt.hashSync(user_password, 10);
 
     if (hasUser) {
-      res.json({ error: 'Este login já está cadastrado.' });
+      // res.json({ error: 'Este login já está cadastrado.' });
+      return res.status(400).send({ error: 'Este login já está cadastrado.!' });
     } else {
       const response = await knex('tb_users').insert({
         user_name, user_login, user_password: hashedPassword
       });
 
-      res.json({ success: 'Usuário cadastrado com sucesso.' });
+      // res.json({ success: 'Usuário cadastrado com sucesso.' });
+      return res.status(200).send({ success: 'Usuário cadastrado com sucesso.' });
+
     }
   },
 
