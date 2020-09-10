@@ -9,17 +9,17 @@ Para ver a aplicação em funcionamento, acesse https://seven-inc-api.herokuapp.
 
 ### Rotas
 
-get('/employees') - lista os funcionários cadastrados
-get('/employees/id') - lista os dados de um funcionário
-post('/employees') - cadastra um novo funcionário
-put('/employees/id') - edita os dados de um funcionário
-delete('/employees/id') - apaga um funcionário
-
-get('/users') - lista os usuários cadastrados
-get('/users/id') - lista os dados de um usuário
-post('/users') - cadastra um novo usuário
-put('/users/id') - edita os dados de um usuário
-delete('/users/id') - apaga um usuário
+get('/employees') - lista os funcionários cadastrados <br />
+get('/employees/id') - lista os dados de um funcionário <br />
+post('/employees') - cadastra um novo funcionário <br />
+put('/employees/id') - edita os dados de um funcionário <br />
+delete('/employees/id') - apaga um funcionário <br />
+<br />
+get('/users') - lista os usuários cadastrados <br />
+get('/users/id') - lista os dados de um usuário <br />
+post('/users') - cadastra um novo usuário <br />
+put('/users/id') - edita os dados de um usuário <br />
+delete('/users/id') - apaga um usuário <br />
 
 
 ## Para testar o código como desenvolvedor
